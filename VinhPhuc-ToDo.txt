@@ -1,3 +1,3 @@
 Vinh Phuc - TODO List
-- Maze Generator Algorithms
+- Maze Generator Algorithms - Depth-First Search (DFS)
 - Unity Interface
