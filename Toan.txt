@@ -1,0 +1,3 @@
+Toan's TODO list:
+- Complete Maze Generator tutorial
+- Prepare Unity project to be pushed to project Git repo
