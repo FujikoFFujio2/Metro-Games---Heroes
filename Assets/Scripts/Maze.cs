@@ -139,7 +139,7 @@ public class Maze : MonoBehaviour {
 		}
 	}
 
-	void iteration() {
+	/* void iteration() {
 		GiveCurrentCellNeighbours ();
 		if (!cells[currentNeighbour].visited && cells[currentCell].visited) {
 			BreakWall ();
@@ -152,7 +152,7 @@ public class Maze : MonoBehaviour {
 			}
 		}
 		Invoke ("iteration", 0.5f);
-	}
+	} */
 
 	void BreakWall() {
 		switch (wallToBreak) {
