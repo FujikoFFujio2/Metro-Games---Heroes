@@ -17,8 +17,8 @@ public class Maze : MonoBehaviour {
 	// GameObject is the class, gameObject is the variable that
 	// the script gets attached to
 	public GameObject wall;
-	// the value of the wall on the z axis
-	public float wallLength = 10.0f;
+	// the value of the wall length (on the z axis)
+	public float wallLength = 1.0f;
 	// number of cells we going to access
 	public int xSize = 5;
 	public int ySize = 5;
@@ -41,7 +41,31 @@ public class Maze : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		CreatePlane ();
 		CreateWalls ();
+		CreatePlayer ();
+	}
+
+	/*
+	 * Vector3 (1, 1, 1) equivalent to a plane which cover the ground
+	 * of a 10 by 10 maze.
+	 * 
+	 */
+	void CreatePlane() {
+		float xSizeOfPlane = (float)xSize / 10;
+		float ySizeOfPlane = (float)ySize / 10;
+		GameObject.Find ("Plane").transform.localPosition = new Vector3 (0, -0.5f, 0); 
+		GameObject.Find ("Plane").transform.localScale = new Vector3 (xSizeOfPlane, 1, ySizeOfPlane); 
+		// gamePlane.transform.localScale = new Vector3 (10, 1, 10); 
+		//print (gamePlane);
+	}
+
+	void CreatePlayer() {
+		print (GameObject.Find ("Player").transform);
+		float initialPlayerPosX = -xSize / 2.0f + wallLength / 2;
+		float initialPlayerPosY = -ySize / 2.0f + wallLength / 2;
+		print (initialPlayerPosX); 
+		GameObject.Find ("Player").transform.localPosition = new Vector3 (initialPlayerPosX, 0, initialPlayerPosY);
 	}
 
 	void CreateWalls () {
@@ -50,8 +74,6 @@ public class Maze : MonoBehaviour {
 
 		float inititalXPos = -xSize / 2.0f;
 		float inititalZPos = -ySize / 2.0f + wallLength / 2;
-		print (inititalXPos);
-		print (inititalZPos);
 		initialPos = new Vector3 (inititalXPos, 0.0f, inititalZPos);
 		Vector3 myPos = initialPos;
 		GameObject tempWall;
@@ -61,11 +83,10 @@ public class Maze : MonoBehaviour {
 			for (int j = 0; j <= xSize; j++) {
 				float startAtX = initialPos.x + (j * wallLength);
 				float startAtZ = initialPos.z + (i * wallLength);
-				print (startAtX); 
-				print (startAtZ);
 				myPos = new Vector3 (startAtX, 0.0f, startAtZ);
 				tempWall = Instantiate (wall, myPos, Quaternion.identity) as GameObject;
 				// Makes the GameObject "wallHolder" the parent of the GameObject "tempWall".
+				print (tempWall.transform);
 				tempWall.transform.parent = wallHolder.transform;
 			}
 		}
@@ -98,7 +119,7 @@ public class Maze : MonoBehaviour {
 		// Get all the children
 		// More info on gameObject vs transform.gameObject could be found here:
 		// https://forum.unity3d.com/threads/class-hierarchy-gameobject-vs-transform-gameobject.63897/
-		for (int i = 0; i < children; i++) {
+		for (int i = 0; i < children; i++) { 
 			allWalls [i] = wallHolder.transform.GetChild (i).gameObject;
 		}
 
