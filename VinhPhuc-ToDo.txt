@@ -1,3 +1,5 @@
 Vinh Phuc - TODO List
-- Maze Generator Algorithms - Depth-First Search (DFS)
-- Unity Interface
+- LOOP Game algorithm
+- Game UI
+- Music
+DEADLINE: Friday 10/03
